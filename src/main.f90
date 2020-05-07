@@ -20,14 +20,15 @@ end
 
 subroutine duffing( t,  &
                     w,  &
-                    yp )
+                    f )
 
-    real :: t, w( 2 ), yp( 2 ), e
+    real :: t, w( 2 ), f( 2 ), e
 
     e = 0.200000
 
-    yp( 1 ) = w( 2 ) - ( e * w( 2 ) ** 3 )
-    yp( 2 ) = w( 1 )
+    ! Два уравнения первого порядка
+    f( 1 ) = w( 2 ) - ( e * w( 2 ) ** 3 ) ! Производная первой компоненты U
+    f( 2 ) = w( 1 )                       ! Производная второй компоненты U'
 
     return
 
@@ -104,13 +105,13 @@ program coursework
 
     ! -------------------------- CALC_ZEROIN -------------------------
 
-    ax  = -0.8
-    bx  = 0.8
+    ax  = -0.1
+    bx  = 0.90000
     tol = 1.e-06
 
     result_a = zeroin( ax, bx, function_a, tol )
     result_a = result_a * const_value_a
-    write ( *, '( A, F8.6 )' ) "A = ", result_a
+    write ( *, '( A, F9.6 )' ) "A = ", result_a
 
     ! ----------------------------------------------------------------
 
@@ -165,8 +166,8 @@ program coursework
     80 write ( *, 81 )
 
     ! ----------------------------------------------------------------
-    !11 format( '(', f10.2, 2x, '; ', f10.6, 2x, '; ', E14.6, ' )' )
-    11 format( f10.2, 2x, f10.6, 2x, E14.6 )
+    11 format( '(', f10.2, 2x, '; ', f10.6, 2x, '; ', E14.6, ' )' )
+    !11 format( f10.2, 2x, f10.6, 2x, E14.6 )
     !11 format( ' (', f10.2, 2x, ';', E14.6, ')' )
     31 format( ' ГPAHИЦЫ ПOГPEШHOCTEЙ ИЗMEHEHЫ  '/' RELERR=', E10.3, 2X, &
                'ABSERR=', E10.3 )
