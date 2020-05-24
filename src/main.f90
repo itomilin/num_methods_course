@@ -24,7 +24,9 @@ subroutine duffing( t,  &
 
     real :: t, w( 2 ), f( 2 ), e
 
-    e = 0.200000
+    !e = 0.200000
+    !e = 0.22
+    e = 0.280000
 
     ! Два уравнения первого порядка
     f( 1 ) = w( 2 ) - ( e * w( 2 ) ** 3 ) ! Производная первой компоненты U
@@ -137,9 +139,8 @@ program coursework
                    rwork,   &
                    iwork )
 
-    write ( *, 11 ) t, w( 1 ), w( 2 )
-    !write ( *, 11 ) t, w( 2 )
-    !write ( *, 11 ) t, w( 1 )
+    !write ( *, 11 ) t, w( 1 ), w( 2 )
+    write ( *, 11 ) t, w( 2 )
     go to ( 80, 20, 30, 40, 50, 60, 70, 80 ), iflag
 
     20 tout = tprint + t
@@ -151,7 +152,7 @@ program coursework
         go to 10
     40 write ( *, 41 )
         go to 10
-    50 abserr = 0.1e-07
+    50 abserr = 0.1e-06
     write ( *, 31 ) relerr, abserr
         go to 10
     60 relerr = relerr * 10.0
@@ -166,9 +167,9 @@ program coursework
     80 write ( *, 81 )
 
     ! ----------------------------------------------------------------
-    11 format( '(', f10.2, 2x, '; ', f10.6, 2x, '; ', E14.6, ' )' )
-    !11 format( f10.2, 2x, f10.6, 2x, E14.6 )
-    !11 format( ' (', f10.2, 2x, ';', E14.6, ')' )
+    !11 format( '(', f10.2, 2x, '; ', f10.6, 2x, '; ', E14.6, ' )' )
+    11 format( '(', f10.2, 2x, '; ', E14.6, ' )' )
+    !11 format( f5.2, 2x, f10.6, 2x, E14.6 )
     31 format( ' ГPAHИЦЫ ПOГPEШHOCTEЙ ИЗMEHEHЫ  '/' RELERR=', E10.3, 2X, &
                'ABSERR=', E10.3 )
     41 format( ' MHOГO ШAГOB ' )
